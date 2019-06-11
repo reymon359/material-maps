@@ -10,6 +10,8 @@ import { MaterialModule } from './material.module';
 // Components
 import { MapComponent } from './components/map/map.component';
 
+// Angular maps
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,10 @@ import { MapComponent } from './components/map/map.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR_KEY'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
