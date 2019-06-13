@@ -15,8 +15,9 @@ export class MapComponent implements OnInit {
   
   constructor() {
 
-    const newMarker = new Marker(38.344612, -0.490443);
-    this.markers.push(newMarker);
+    if (localStorage.getItem('markers')) {
+      this.markers = JSON.parse(localStorage.getItem('markers'));
+    }
 
   }
 
@@ -32,6 +33,16 @@ export class MapComponent implements OnInit {
 
     this.markers.push(newMarker);
 
+    this.saveStorage();
+
   }
+
+  saveStorage(){
+
+    localStorage.setItem('markers',JSON.stringify(this.markers));
+
+  }
+
+
 
 }
