@@ -12,7 +12,7 @@ export class MapComponent implements OnInit {
 
   lat = 38.344612;
   lng = -0.490443;
-  
+
   constructor() {
 
     if (localStorage.getItem('markers')) {
@@ -37,9 +37,18 @@ export class MapComponent implements OnInit {
 
   }
 
-  saveStorage(){
+  removeMarker(i: number) {
 
-    localStorage.setItem('markers',JSON.stringify(this.markers));
+    this.markers.splice(i, 1);
+
+    this.saveStorage();
+  }
+
+
+
+  saveStorage() {
+
+    localStorage.setItem('markers', JSON.stringify(this.markers));
 
   }
 
