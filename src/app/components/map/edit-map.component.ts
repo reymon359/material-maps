@@ -8,23 +8,25 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class EditMapComponent implements OnInit {
 
-  formu: FormGroup;
+  formu: FormGroup; // html front data
 
-  constructor(public formBuilder: FormBuilder,
-              public dialogRef: MatDialogRef<EditMapComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { 
-                console.log(data);
-                this.formu = formBuilder.group({
-                  title: data.title,
-                  desc: data.desc
-                });
-              }
+  constructor(
+    public formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<EditMapComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.formu = formBuilder.group({
+      title: data.title,
+      desc: data.desc
+    });
+  }
 
   ngOnInit() {
   }
+  // Close the modal sending back the form data
   saveChanges() {
-    console.log('feffefe');
+    this.dialogRef.close(this.formu.value);
   }
+  // Closing the modal
   onNoClick(): void {
     this.dialogRef.close();
   }

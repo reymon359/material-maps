@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,public dialog: MatDialog) {
 
+    // Load the markers array from the localStorage
     if (localStorage.getItem('markers')) {
       this.markers = JSON.parse(localStorage.getItem('markers'));
     }
@@ -37,6 +38,7 @@ export class MapComponent implements OnInit {
 
   }
 
+  // Deletes a marker from the array (pos passed by params) and saves the storage.
   deleteMarker(i: number) {
 
     this.markers.splice(i, 1);
@@ -45,20 +47,33 @@ export class MapComponent implements OnInit {
 
   }
 
-  editMarker(marker:Marker){
+  // Opens a dialog to edit the modal data
+  editMarker(marker: Marker) {
 
+      // Opens the dialog with the EditMapComponent "inside"
       const dialogRef = this.dialog.open(EditMapComponent, {
         width: '250px',
         data: {title: marker.title, desc: marker.desc}
       });
   
       dialogRef.afterClosed().subscribe(result => {
-console.log(result);
+
+        // Exit when dialog doesn't return data
+        if (!result){
+          return;
+        }
+
+        marker.title = result.title;
+        marker.desc = result.desc;
+
+        this.saveStorage();
+        this.snackBar.open('Marker updated', 'Close', { duration: 3000 });
+
       });
   }
 
+  // Saves the markers array in the localStorage
   saveStorage() {
-
     localStorage.setItem('markers', JSON.stringify(this.markers));
 
   }
