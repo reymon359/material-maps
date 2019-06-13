@@ -1,3 +1,11 @@
-<p>
-  edit-map works!
-</p>
+<form [formGroup]="formu">
+    <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea rows="3" matInput placeholder="Description" formControlName="desc"></textarea>
+    </mat-form-field>
+    <button (click)="saveChanges()" mat-raised-button color="primary">Save</button>&nbsp;
+    <button (click)="onNoClick()" type="button" mat-raised-button color="warn">Cancel</button>
+</form>
