@@ -10,3 +10,10 @@ body {
     margin-top: 10px;
     padding: 10px;
 }
+
+
+/* the material angular dark theme makes it white */
+
+agm-map {
+    color: #000;
+}
